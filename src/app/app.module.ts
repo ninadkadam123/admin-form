@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ListComponent } from './list/list.component';
 import { MethodService } from './method.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PopUpComponent } from './pop-up/pop-up.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { PopUpComponent } from './pop-up/pop-up.component';
     EditComponent,
     AddComponent,
     ListComponent,
-    PopUpComponent
+    
   ],
   imports: [
     BrowserModule,
