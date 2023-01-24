@@ -135,8 +135,10 @@ export class EditComponent implements OnInit {
    this.statusUpdateEvent.emit('list')
   //  JSON.stringify(this.finalForm.value)
   this.service.updateMethod( this.finalForm.value,this.id).subscribe(data=>{
-    this.router.navigate(['list'])
+    
   })
+
+  this.router.navigate(['list'])
    
    
    
