@@ -1,0 +1,21 @@
+<div class="">
+  <div style="margin-bottom: 10px">
+    <input class="search-input" (input)="searchList(name.value)" #name />
+  </div>
+  <div class="list-box">
+    <div *ngFor="let l of list">
+      <div
+        class="list-card"
+        [style]="{
+          'background-color': l.category.color,
+          color: 'white'
+        }"
+        (click)="Update(l._id)"
+      >
+        <div class="img-di"><img src="{{ l.illustration }}" /></div>
+        <div>___________</div>
+        <div>{{ l.title }}</div>
+      </div>
+    </div>
+  </div>
+</div>

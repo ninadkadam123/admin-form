@@ -1,0 +1,302 @@
+<form id="finalForm" [formGroup]="finalForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col">
+      <div class="detail-div">
+        <div>
+          <span class="label-style">Contributor Details</span>
+          <span name="fill" id="fill1" class="msg-val"
+            >Fill all the Details</span
+          >
+        </div>
+        <div class="d-flex flex-row gap-3 text-start">
+          <div>
+            <label class="slabel">Contributor’s Name </label>
+            <input type="text" placeholder="Type here" class="input-style" />
+          </div>
+          <div>
+            <label class="slabel">Contributor’s Email id</label>
+            <input type="text" placeholder="Type here" class="input-style" />
+          </div>
+        </div>
+      </div>
+      <!-- ----------------------------------------------------------------------- -->
+      <div class="detail-div" formGroupName="method">
+        <div>
+          <span class="label-style">Design Method Intro</span>
+          <span name="fill" id="fill2" class="msg-val"
+            >Fill all the Details</span
+          >
+        </div>
+        <div class="d-flex flex-row gap-3">
+          <div>
+            <label class="slabel">Method</label>
+            <input
+              type="text"
+              placeholder="Method title"
+              class="input-style"
+              formControlName="title"
+            />
+          </div>
+          <div>
+            <div>
+              <label class="slabel">Method Icon</label>
+            </div>
+            <input
+              type="text"
+              placeholder="Upload SVG only"
+              class="input-style"
+              formControlName="illustration"
+            />
+            <!-- <div class="upload-block">
+              <span>Upload a SVG (only) (64X64 Pts)</span>
+              <span (click)="fileInput.click()"
+                ><img src="./assets/upload.svg" alt=""
+              /></span>
+            </div>
+            <input #fileInput type="file" style="display: none" /> -->
+          </div>
+        </div>
+        <div>
+          <label class="slabel">Description</label>
+          <!-- <input
+            type="text"
+            placeholder="Description(Should be explaining what method is)"
+            class="input-desc"
+            formControlName="shortDescription"
+          /> -->
+          <textarea
+            placeholder="Description(Should be explaining what method is)"
+            class="input-desc"
+            #inputvalue
+            formControlName="shortDescription"
+            (change)="changeToSentenceCase($event)"
+          ></textarea>
+        </div>
+        <div class="d-flex flex-row gap-3">
+          <div>
+            <label class="slabel">Method Category</label>
+            <div class="category-dropdown">
+              <input
+                class="category-dropdown-input no-category"
+                (click)="catgoryStatus()"
+                readonly="readonly"
+                placeholder="select category"
+                value="{{ Category.name }}"
+                [style]="{
+                  'background-color': Category.color,
+                  color: 'white'
+                }"
+              />
+              <div *ngIf="showcategory">
+                <div
+                  class="category-dropdown-list-item"
+                  *ngFor="let cat of categories"
+                  (mouseenter)="setIsHover($event)"
+                  (mouseleave)="setIsHover($event)"
+                  (click)="addCategory(cat)"
+                  [style]="{
+                    'background-color': 'white',
+                    color: cat.color
+                  }"
+                >
+                  {{ cat.category }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="slabel">Select Tags</label>
+            <input
+              id="taginput"
+              (input)="tagSelect(name.value)"
+              type="text"
+              placeholder="Search Tag"
+              #name
+              class="input-style"
+            />
+
+            <div>
+              <div *ngIf="showDropDown">
+                <div class="state-container-dropdown">
+                  <div
+                    (click)="addTags(t)"
+                    class="state"
+                    *ngFor="let t of tags"
+                  >
+                    {{ t.tag }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row flex-wrap">
+          <div *ngFor="let t of selectedTags">
+            <div class="tags-chips-container">
+              <div
+                class="chip"
+                [style]="{
+                  'background-color': t.phase.color + '1a',
+                  border: '1px solid' + t.phase.color
+                }"
+                (click)="removeSelectTag(t)"
+              >
+                <div
+                  class="chip-title"
+                  [style]="{
+                    color: t.phase.color
+                  }"
+                >
+                  {{ t.tag }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ----------------------------------------------------------------------- -->
+      <div class="detail-div">
+        <div>
+          <span class="label-style">Reference Content</span>
+          <span name="fill" id="fill3" class="msg-val"
+            >Fill all the Details</span
+          >
+        </div>
+        <div class="d-flex flex-column gap-3 text-start">
+          <div formArrayName="reference">
+            <div><label class="slabel">Referenc Video Link </label></div>
+            <div *ngFor="let ref of references?.controls; index as i">
+              <div [formGroupName]="i">
+                <div *ngIf="ref.get('format').value == 'Video'">
+                  <div class="long-input">
+                    <input
+                      type="text"
+                      placeholder="Add URL"
+                      class="input-style-long"
+                      formControlName="link"
+                    />
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Add URL"
+                        class="input-style"
+                        formControlName="type"
+                        style="display: none"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="add-more" (click)="addVideo()"> Add more</a><br />
+        <div formArrayName="reference">
+          <label class="slabel">Referenc Articles Link </label>
+          <div *ngFor="let ref of references?.controls; index as i">
+            <div [formGroupName]="i">
+              <div *ngIf="ref.get('format').value == 'Article'">
+                <div class="d-flex flex-row gap-3">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Add URL"
+                      class="input-style-long"
+                      formControlName="link"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Add URL"
+                      class="input-style"
+                      formControlName="type"
+                      style="display: none"
+                    />
+                  </div>
+                </div>
+                <div style="margin-top: 10px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="add-more" (click)="addArticle()">Add more</a><br />
+        <div class="d-flex flex-column gap-3 text-start">
+          <div>
+            <label class="slabel">Design Method Kits </label>
+            <div class="long-upload-block">
+              <span>Upload File</span>
+              <!-- <span style="float: right" (click)="fileInputlong2.click()"> -->
+              <span style="float: right">
+                <img src="./assets/upload.svg" alt=""
+              /></span>
+            </div>
+            <input
+              #fileInputlong2
+              type="file"
+              style="display: none"
+              value="file"
+            />
+          </div>
+        </div>
+        <a class="add-more">Add more</a><br />
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="column-box">
+        <span class="label-style">Design method steps</span>
+        <span name="fill" id="fill4" class="msg-val advice"
+          >Fill all the Details</span
+        >
+        <div>
+          <div formArrayName="steps">
+            <div class="d-flex flex-row gap-3 text-start flex-wrap">
+              <div *ngFor="let step of steps?.controls; index as i">
+                <div class="card" [formGroupName]="i">
+                  <div class="card-di">
+                    <div>
+                      <span class="step-desi">
+                        Step
+                        <span class="step-num">{{ i + 1 }}</span></span
+                      >
+                      <div class="close" (click)="removeSteps(i)">
+                        <img src="./assets/close.svg" alt="" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <input
+                        type="text"
+                        class="input-style-card"
+                        placeholder="Step Title"
+                        formControlName="title"
+                      />
+                    </div>
+                    <span class="slabel">Information about the Step</span><br />
+                    <!-- <input
+                      type="text"
+                      class="input-style-card-desc"
+                      placeholder="Description"
+                      formControlName="description"
+                    /> -->
+                    <textarea
+                      class="input-style-card-desc"
+                      placeholder="Description"
+                      formControlName="description"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step-add">
+          <a class="add-more" (click)="addSteps()">Add more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

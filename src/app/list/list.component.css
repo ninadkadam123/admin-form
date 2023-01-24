@@ -1,0 +1,59 @@
+.list-card{
+box-sizing: border-box;
+/* padding: 8px; */
+/* gap: 12px; */
+width:128px;
+height:  128px;
+left: 308px;
+top: 320px;
+border: 0.5px solid #5F5F5F;
+
+}
+
+.list-box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding: 10px; */
+    max-width: 1028px;
+    margin-top: 20px;
+    height: auto;    
+    margin: auto;
+    gap: 40px;
+}
+
+.search-input{
+    box-sizing: border-box;
+
+display: flex;
+flex-direction: row;
+margin: auto;
+padding: 12px;
+gap: 10px;
+
+width: 226px;
+height: 44px;
+
+background: #FFFFFF;
+box-shadow: inset 4px 4px 5px rgba(111, 174, 188, 0.11);
+flex: none;
+order: 1;
+flex-grow: 0;
+background: #FFFFFF;
+box-shadow: inset 4px 4px 5px rgba(111, 174, 188, 0.11);
+border-image: linear-gradient(to right, #FFFFFF, #00B2DA);
+border-image-slice: 1; 
+}
+
+input:focus{
+    outline: none !important;
+    border: 0.5px solid transparent;
+    border-image: linear-gradient(to right, #003C49, #00D0FF);
+    border-image-slice: 1;
+}
+
+.img-di{
+    width: 104px;
+    height: 62px;
+    /* padding: 8px; */
+}
