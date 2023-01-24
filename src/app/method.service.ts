@@ -21,13 +21,13 @@ export class MethodService {
    addMethod(data:any):any{
     console.log('in Post method')
     // console.log(JSON.parse(data))
-    return this.httpClient.post(`http://design-it-well.onrender.com/admin`,data)
+    return this.httpClient.post(`https://design-it-well.onrender.com/admin`,data)
     
    }
    
    updateMethod(data:any,id:number){
     console.log("in Update "+data)
-    return this.httpClient.put(`http://design-it-well.onrender.com/methods/${id}`,data)
+    return this.httpClient.put(`https://design-it-well.onrender.com/methods/${id}`,data)
    }
    
    deleteMethod(id:number):Observable<any>{
