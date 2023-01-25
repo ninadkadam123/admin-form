@@ -122,8 +122,9 @@ export class AddComponent implements OnInit {
      if(this.finalForm.valid){
       this.statusUpdateEvent.emit('list')
       this.service.addMethod(this.finalForm.value).subscribe(()=>{
-        this.router.navigate(['list']);
+        
       })
+      this.router.navigate(['list']);
       
      }
      

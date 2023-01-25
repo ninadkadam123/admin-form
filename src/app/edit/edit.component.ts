@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
+
 import { MethodService } from '../method.service';
 
 @Component({
@@ -134,7 +134,7 @@ export class EditComponent implements OnInit {
    console.log(JSON.stringify(this.finalForm.value))
    this.statusUpdateEvent.emit('list')
   //  JSON.stringify(this.finalForm.value)
-  this.service.updateMethod( this.finalForm.value,this.id).subscribe(data=>{
+  this.service.updateMethod( this.finalForm.value,this.id).subscribe(()=>{
     
   })
 
@@ -261,9 +261,10 @@ export class EditComponent implements OnInit {
     }
     deleteMethod(){
      this.service.deleteMethod(this.id).subscribe(()=>{
-      this.statusUpdateEvent.emit('list');
-     this.router.navigate(['list']);
+     
      })
+     this.statusUpdateEvent.emit('list');
+     this.router.navigate(['list']);
      
      
     }
