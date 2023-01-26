@@ -407,10 +407,7 @@ textarea:focus{
     border: 0.5px solid transparent;
     border-image: linear-gradient(to right, #003C49, #00D0FF);
     border-image-slice: 1;
-    font-family: 'Gugi';
-    font-style: normal;
-    font-weight: 400;
-    color: #00B2DA;
+    
 }
 
   
@@ -509,46 +506,5 @@ margin-bottom: 20px;
     flex-grow: 0;
 }
 
-.modal-backdrop
- {
-  
-   background: rgba(255, 255, 255, 0.4); 
-   backdrop-filter: blur(10px);
- }
 
- .popup-box{
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 20px 20px 30px;
-gap: 12px;
-position: absolute;
-width: 360px;
-height: 245px;
-right: 576px;
-bottom: 495px;
-background: #FFFFFF;
-box-shadow: 0px -4px 20px rgba(111, 174, 188, 0.2);
-border-radius: 24px 24px 0px 0px;
- }
 
- 
- .popup-box-in{
-  display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 20px 20px 30px;
-gap: 12px;
-
-position: absolute;
-width: 360px;
-height: 245px;
-right: 576px;
-bottom: 495px;
-
-background: #FFFFFF;
-box-shadow: 0px -4px 20px rgba(111, 174, 188, 0.2);
-border-radius: 24px 24px 0px 0px;
- }
