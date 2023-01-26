@@ -237,8 +237,9 @@ export class AddComponent implements OnInit {
 
   if(this.finalForm.valid){
     (<HTMLInputElement>document.getElementById('bsta'))['style'].color='#2BAC20';
-    
     (<HTMLInputElement>document.getElementById('divbut'))['style'].background="#00B2DA";
+    (<HTMLInputElement>document.getElementById('pdiv'))['style'].background="#00B2DA";
+  
     (<HTMLInputElement>document.getElementById('divbut'))['style'].color='#FFFFFF'
     
   }
