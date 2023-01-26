@@ -1,4 +1,5 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { __values } from 'tslib';
 import { AddComponent } from './add/add.component';
@@ -24,7 +25,8 @@ export class AppComponent implements OnInit,AfterContentChecked  {
     private editComponent:EditComponent,
     private addComponent:AddComponent,
     private listComponent:ListComponent,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router:Router
     ){    
       
   }
@@ -44,12 +46,9 @@ export class AppComponent implements OnInit,AfterContentChecked  {
     if(componentRef instanceof EditComponent || componentRef instanceof AddComponent){
       const child=componentRef
       child.statusUpdateEvent.subscribe((status)=>{
-        console.log(status)
          this.statusDesign=(status==='add')?true:false;
          this.bstatus=(status==='edit')? 'Update' : 'Submit';
          this.cstatus=(status==='list')?true:false;      
-   
-         console.log(this.bstatus)
       })
       
 
@@ -60,7 +59,7 @@ export class AppComponent implements OnInit,AfterContentChecked  {
 
 
 public addUpdate(){
-  console.log("add update" +this.bstatus)
+  
   if(this.bstatus==='Update'){
     this.editComponent.onbutSubmit() 
   }else{
@@ -71,20 +70,23 @@ public addUpdate(){
 
 
 public delete(){
-   console.log('in delete')
+   
    document.getElementById('deleteBut').click()
 
 }
 
-openPopup() {
-  console.log('in popup')
-  this.displayStyle = "block";
-}
-closePopup() {
-  this.displayStyle = "none";
-}
 
 
+addMethodView(){
+  
+  this.statusDesign=true;
+  this.router.navigate(['add'])
+}
+
+listMethodView(){
+  this.statusDesign=false;
+  this.router.navigate(['list'])
+}
 
   
   

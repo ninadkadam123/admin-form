@@ -257,13 +257,13 @@ export class EditComponent implements OnInit {
   
     }
     deleteMethod(){
+      
      this.service.deleteMethod(this.id).subscribe(()=>{
-     
+      window.alert("Method Deleted")
+      this.statusUpdateEvent.emit('list');
+      this.router.navigate(['list']);
      })
-     this.statusUpdateEvent.emit('list');
-     this.router.navigate(['list']);
-     
-     
+       
     }
     openPopup() {
       console.log('in popup')

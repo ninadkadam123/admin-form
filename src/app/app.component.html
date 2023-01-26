@@ -40,12 +40,16 @@
   <div class="row" style="margin-bottom: 100px">
     <div>
       <div class="mStatus">
-        <div [ngClass]="[statusDesign ? 'add_design' : 'add_design-inactive']">
+        <div
+          [ngClass]="[statusDesign ? 'add_design' : 'add_design-inactive']"
+          (click)="addMethodView()"
+        >
           Add Design method
         </div>
         <div>
           <div
             [ngClass]="[statusDesign ? 'add_design-inactive' : 'add_design']"
+            (click)="listMethodView()"
           >
             Edit Design Method
           </div>
