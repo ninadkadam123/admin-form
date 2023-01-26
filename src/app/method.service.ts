@@ -26,12 +26,12 @@ export class MethodService {
    }
    
    updateMethod(data:any,id:number){
-    console.log("in Update "+data)
+    
     return this.httpClient.put(`https://design-it-well.onrender.com/methods/${id}`,data)
    }
    
    deleteMethod(id:number):Observable<any>{
-    console.log("delete Method")
+    
     return this.httpClient.delete<any>(`https://design-it-well.onrender.com/method/${id}`)
    }
 

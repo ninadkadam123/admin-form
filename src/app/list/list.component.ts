@@ -24,9 +24,10 @@ export class ListComponent implements OnInit,OnChanges{
     (<HTMLInputElement>document.getElementById('bsta'))['style'].color='#FFFFFF';
     (<HTMLInputElement>document.getElementById('bsta')).textContent="";
     (<HTMLInputElement>document.getElementById('divbut'))['style'].background="#FFFFFF;";
-    (<HTMLInputElement>document.getElementById('divbut'))['style'].color='#D6D6D6'
+    (<HTMLInputElement>document.getElementById('divbut'))['style'].color='#D6D6D6';
+    (<HTMLInputElement>document.getElementById('fetchstatus')).textContent=" Please Wait.....";
     this.service.getList().subscribe((data)=>{
-      
+      (<HTMLInputElement>document.getElementById('fetchstatus')).textContent="";
        this.list=data
        this.copylist=data
       console.log(data)

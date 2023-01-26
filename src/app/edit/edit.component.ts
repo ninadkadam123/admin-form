@@ -74,13 +74,13 @@ export class EditComponent implements OnInit {
     this.statusUpdateEvent.emit('edit');
     (<HTMLInputElement>document.getElementById('bsta'))['style'].color='#EC4646';
     (<HTMLInputElement>document.getElementById('bsta')).textContent="Make Changes";
-
+    (<HTMLInputElement>document.getElementById('fetchstatus')).textContent=" Please Wait.....";
     this.id=this.route.snapshot.params['id']
     
     if(this.id!=null){
       this.service.getMethod(this.id).subscribe((data)=>{
-             console.log(data)
-
+        
+        (<HTMLInputElement>document.getElementById('fetchstatus')).textContent="";
              this.selectedTags=data.designTags
              
 
@@ -128,17 +128,14 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-    
-    console.log(this.finalForm.controls.method.controls.illustration.valid)
-    
-   console.log(JSON.stringify(this.finalForm.value))
-   this.statusUpdateEvent.emit('list')
-  //  JSON.stringify(this.finalForm.value)
+
   this.service.updateMethod( this.finalForm.value,this.id).subscribe(()=>{
-    
+    (<HTMLInputElement>document.getElementById('bsta')).textContent="Method Modified";
+    this.statusUpdateEvent.emit('list')
+    this.router.navigate(['list'])
   })
 
-  this.router.navigate(['list'])
+  
    
    
    
@@ -254,7 +251,7 @@ export class EditComponent implements OnInit {
   
     if(this.finalForm.valid){
       (<HTMLInputElement>document.getElementById('bsta'))['style'].color='#1ED30E';
-      (<HTMLInputElement>document.getElementById('bsta')).textContent="Method Modified";
+      
     }
    
   

@@ -78,7 +78,7 @@ export class AddComponent implements OnInit {
     this.statusUpdateEvent.emit('add');
     (<HTMLInputElement>document.getElementById('bsta'))['style'].color='#EC4646';
     (<HTMLInputElement>document.getElementById('bsta')).textContent="All fields are mandatory";
-
+    (<HTMLInputElement>document.getElementById('fetchstatus')).textContent=" Please Wait.....";
     this.finalForm.controls.reference.push(new FormGroup({ type: new FormControl(), format: new FormControl('Video'),link: new FormControl('',Validators.required)}))
     this.finalForm.controls.reference.push(new FormGroup({ type: new FormControl(), format: new FormControl('Article'),link: new FormControl('',Validators.required)}))
 
@@ -90,7 +90,7 @@ export class AddComponent implements OnInit {
     })
 
     this.service.getMethodCategory().subscribe((data)=>{
-
+      (<HTMLInputElement>document.getElementById('fetchstatus')).textContent="";
       this.categories=data
       console.log(data)
 
@@ -117,14 +117,15 @@ export class AddComponent implements OnInit {
 
   onSubmit() {
     
-    console.log(this.finalForm.value)
-    console.log(JSON.stringify(this.finalForm.value))
+    
      if(this.finalForm.valid){
-      this.statusUpdateEvent.emit('list')
+      
       this.service.addMethod(this.finalForm.value).subscribe(()=>{
-        
+        (<HTMLInputElement>document.getElementById('bsta')).textContent="Great Job";
+        this.statusUpdateEvent.emit('list')
+       this.router.navigate(['list']);
       })
-      this.router.navigate(['list']);
+      
       
      }
      
@@ -169,8 +170,7 @@ export class AddComponent implements OnInit {
     
     if (!this.selectedTags.includes(value)) {
       this.selectedTags.push(value)
-      // this.tags=this.tags.filter(item=>item.tag!=value.tag)
-      // this.copytag=this.tags
+      
       this.finalForm.controls.method.controls.designTags.push(new FormGroup({
         _id:new FormControl(value._id),
         title: new FormControl(value.tag),
@@ -237,7 +237,7 @@ export class AddComponent implements OnInit {
 
   if(this.finalForm.valid){
     (<HTMLInputElement>document.getElementById('bsta'))['style'].color='#2BAC20';
-    (<HTMLInputElement>document.getElementById('bsta')).textContent="Great Job";
+    
     (<HTMLInputElement>document.getElementById('divbut'))['style'].background="#00B2DA";
     (<HTMLInputElement>document.getElementById('divbut'))['style'].color='#FFFFFF'
     
