@@ -76,24 +76,24 @@ export class EditComponent implements OnInit {
     (<HTMLInputElement>document.getElementById('bsta')).textContent="Make Changes";
     (<HTMLInputElement>document.getElementById('fetchstatus')).textContent=" Please Wait.....";
     this.id=this.route.snapshot.params['id']
-    console.log()
+    
     if(this.id!=null){
       this.service.getMethod(this.id).subscribe((data)=>{
         
         (<HTMLInputElement>document.getElementById('fetchstatus')).textContent="";
              this.selectedTags=data.designTags
              
-
-             this.finalForm.controls.method.patchValue(data)         
-             data.references.forEach(resource => {
+             console.log(data)
+             this.finalForm.controls.method.patchValue(data.method)         
+             data.reference.forEach(resource => {
                this.finalForm.controls.reference.push(new FormGroup({ type: new FormControl(resource.type), format: new FormControl(resource.format),link: new FormControl(resource.link)}))
             })
                
-            data.designTags.forEach(designTag=>{
+            data.method.designTags.forEach(designTag=>{
               this.finalForm.controls.method.controls.designTags.push(new FormGroup({ _id: new FormControl(designTag._id), tag: new FormControl(designTag.tag),phase: new FormControl(designTag.phase)}))
             })
-            this.Category.name= data.category.category;
-            this.Category.color=data.category.color
+            this.Category.name= data.method.category.category;
+            this.Category.color=data.method.category.color
 
             data.steps.forEach(step => {
               this.finalForm.controls.steps.push(new FormGroup({
@@ -101,7 +101,7 @@ export class EditComponent implements OnInit {
                 description: new FormControl(step.description) 
                }))
            })
-        console.log(this.finalForm)
+        
       })
     }
 
@@ -116,7 +116,7 @@ export class EditComponent implements OnInit {
     this.service.getMethodCategory().subscribe((data)=>{
 
       this.categories=data
-      console.log(data)
+      
 
     })
     
@@ -150,11 +150,12 @@ export class EditComponent implements OnInit {
 
 
   addVideo(){
-    this.finalForm.controls.reference.push(new FormGroup({ type: new FormControl(), format: new FormControl('video'),link: new FormControl(),}))
+    console.log("In Video")
+    this.finalForm.controls.reference.push(new FormGroup({ type: new FormControl(), format: new FormControl('Video'),link: new FormControl(),}))
   }
 
   addArticle(){
-
+   console.log("In Article")
     this.finalForm.controls.reference.push(new FormGroup({ type: new FormControl(), format: new FormControl('Article'),link: new FormControl(),}))
 
   }
@@ -175,6 +176,12 @@ export class EditComponent implements OnInit {
 
   get designTags(): FormArray {
     return this.finalForm.get('method').get('designTags') as FormArray
+  }
+  removeArticle(index: number){
+    this.finalForm.controls.reference.removeAt(index)
+  }
+  removeVideo(index: number){
+    this.finalForm.controls.reference.removeAt(index)
   }
 
   addTags(value){

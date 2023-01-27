@@ -173,28 +173,37 @@
               >Fill all the Details</span
             >
           </div>
-          <div class="d-flex flex-column gap-3 text-start">
+          <div class="d-flex flex-row gap-3 text-start">
             <div formArrayName="reference">
-              <div><label class="slabel">Referenc Video Link </label></div>
+              <label class="slabel">Referenc Video Link </label>
               <div *ngFor="let ref of reference?.controls; index as i">
                 <div [formGroupName]="i">
                   <div *ngIf="ref.get('format').value == 'Video'">
-                    <div class="long-input">
-                      <input
-                        type="text"
-                        placeholder="Add URL"
-                        class="input-style-long"
-                        formControlName="link"
-                      />
-                    </div>
-                    <div>
-                      <input
-                        type="text"
-                        placeholder="Add URL"
-                        class="input-style"
-                        formControlName="type"
-                        style="display: none"
-                      />
+                    <div class="d-flex flex-row gap-3">
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Add URL"
+                          class="input-style-long"
+                          formControlName="link"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Add URL"
+                          class="input-style"
+                          formControlName="type"
+                          style="display: none"
+                        />
+                        <div>
+                          <img
+                            src="./assets/close.svg"
+                            alt=""
+                            (click)="removeVideo(i)"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -225,7 +234,11 @@
                         style="display: none"
                       />
                       <div>
-                        <img src="./assets/close.svg" alt="" />
+                        <img
+                          src="./assets/close.svg"
+                          alt=""
+                          (click)="removeArticle(i)"
+                        />
                       </div>
                     </div>
                   </div>
