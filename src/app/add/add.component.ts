@@ -119,7 +119,7 @@ export class AddComponent implements OnInit {
     
     
      if(this.finalForm.valid){
-      
+    
       this.service.addMethod(this.finalForm.value).subscribe(()=>{
         (<HTMLInputElement>document.getElementById('bsta')).textContent="Great Job";
         this.statusUpdateEvent.emit('list')

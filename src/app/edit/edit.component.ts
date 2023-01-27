@@ -48,7 +48,7 @@ export class EditComponent implements OnInit {
     method:new FormGroup({
       title:new FormControl('',Validators.required),
       illustration:new FormControl('',Validators.required),
-      description: new FormControl('',Validators.required),
+      shortDescription: new FormControl('',Validators.required),
       designTags: new FormArray([
       ]),
       category:new FormGroup({_id:new FormControl('',Validators.required),
@@ -76,7 +76,7 @@ export class EditComponent implements OnInit {
     (<HTMLInputElement>document.getElementById('bsta')).textContent="Make Changes";
     (<HTMLInputElement>document.getElementById('fetchstatus')).textContent=" Please Wait.....";
     this.id=this.route.snapshot.params['id']
-    
+    console.log()
     if(this.id!=null){
       this.service.getMethod(this.id).subscribe((data)=>{
         
@@ -128,7 +128,8 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-
+   
+   console.log(this.finalForm.value)
   this.service.updateMethod( this.finalForm.value,this.id).subscribe(()=>{
     (<HTMLInputElement>document.getElementById('bsta')).textContent="Method Modified";
     this.statusUpdateEvent.emit('list')
