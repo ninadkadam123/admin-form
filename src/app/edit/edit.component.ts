@@ -81,7 +81,7 @@ export class EditComponent implements OnInit {
       this.service.getMethod(this.id).subscribe((data)=>{
         
         (<HTMLInputElement>document.getElementById('fetchstatus')).textContent="";
-             this.selectedTags=data.designTags
+             this.selectedTags=data.method.designTags
              
              console.log(data)
              this.finalForm.controls.method.patchValue(data.method)         
@@ -108,16 +108,14 @@ export class EditComponent implements OnInit {
 
     this.service.getDesignTag().subscribe((data)=>{
         this.tags=data
-        this.copytag = data
+         this.copytag = data
         console.log(data)
     })
 
 
     this.service.getMethodCategory().subscribe((data)=>{
-
+      console.log(data)
       this.categories=data
-      
-
     })
     
 
