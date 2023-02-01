@@ -375,6 +375,7 @@ border: 0.5px solid transparent;
 .category-dropdown {
     margin-right: 24px;
     position: relative;
+    
 }
 
 .category-dropdown-input {
@@ -386,6 +387,7 @@ padding: 12px;
 gap: 10px;
 width: 276px;
 height: 39px;
+
 background: #FFFFFF;
 box-shadow: inset 4px 4px 5px rgba(111, 174, 188, 0.11);
 flex: none;

@@ -1,12 +1,17 @@
 .list-card{
 box-sizing: border-box;
-/* padding: 8px; */
-/* gap: 12px; */
+
 width:128px;
 height:  128px;
 left: 308px;
 top: 320px;
 border: 0.5px solid #5F5F5F;
+font-family: 'Gugi';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+color: #FFFFFF;
 
 }
 
