@@ -31,7 +31,7 @@ export class EditComponent implements OnInit {
   }
 
 
-
+  stepnumber=0
   tags=[]
   selectedTags=[]
   copytag: any
@@ -97,6 +97,7 @@ export class EditComponent implements OnInit {
 
             data.steps.forEach(step => {
               this.finalForm.controls.steps.push(new FormGroup({
+                stepNumber:new FormControl(step.stepNumber),
                 title: new FormControl(step.title), 
                 description: new FormControl(step.description) 
                }))
@@ -126,7 +127,7 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-   
+   this.stepnumber=0
    console.log(this.finalForm.value)
   this.service.updateMethod( this.finalForm.value,this.id).subscribe(()=>{
     (<HTMLInputElement>document.getElementById('bsta')).textContent="Method Modified";
@@ -165,10 +166,15 @@ export class EditComponent implements OnInit {
   }
   
   addSteps() {
-    this.finalForm.controls.steps.push(new FormGroup({ title: new FormControl(), description: new FormControl() }))
+    this.stepnumber+=1
+    
+    this.finalForm.controls.steps.push(new FormGroup({ title: new FormControl(),stepNumber: new FormControl(this.stepnumber), description: new FormControl() }))
   }
 
   removeSteps(index: number) {
+    if(this.stepnumber>0){
+      this.stepnumber-=1
+    }
     this.finalForm.controls.steps.removeAt(index)
   }
 

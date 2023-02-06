@@ -33,7 +33,7 @@ export class AddComponent implements OnInit {
 
 
 
-
+  stepnumber=0
   tags=[]
   selectedTags=[]
   copytag: any
@@ -62,6 +62,7 @@ export class AddComponent implements OnInit {
     }),
     reference:new FormArray([]),
     steps: new FormArray([new FormGroup({
+      stepNumber: new FormControl(),
        title: new FormControl('',Validators.required), 
        description: new FormControl('',Validators.required) 
       })])
@@ -155,10 +156,15 @@ export class AddComponent implements OnInit {
   }
   
   addSteps() {
-    this.finalForm.controls.steps.push(new FormGroup({ title: new FormControl(), description: new FormControl() }))
+    this.stepnumber+=1
+    
+    this.finalForm.controls.steps.push(new FormGroup({ title: new FormControl(),stepNumber: new FormControl(this.stepnumber), description: new FormControl() }))
   }
 
   removeSteps(index: number) {
+    if(this.stepnumber>0){
+      this.stepnumber-=1
+    }
     this.finalForm.controls.steps.removeAt(index)
   }
 
