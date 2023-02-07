@@ -286,9 +286,13 @@
                         Step
                         <span class="step-num">{{ i + 1 }}</span></span
                       >
-                      <!-- <input formControlName="stepNumber" /> -->
+
                       <div class="close" (click)="removeSteps(i)">
                         <img src="./assets/close.svg" alt="" />
+                      </div>
+
+                      <div style="display: none">
+                        {{ step.get("stepNumber").setValue(i + 1) }}
                       </div>
 
                       <div>

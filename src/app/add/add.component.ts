@@ -156,15 +156,13 @@ export class AddComponent implements OnInit {
   }
   
   addSteps() {
-    this.stepnumber+=1
     
-    this.finalForm.controls.steps.push(new FormGroup({ title: new FormControl(),stepNumber: new FormControl(this.stepnumber), description: new FormControl() }))
+    
+    this.finalForm.controls.steps.push(new FormGroup({ title: new FormControl(),stepNumber: new FormControl(), description: new FormControl() }))
   }
 
   removeSteps(index: number) {
-    if(this.stepnumber>0){
-      this.stepnumber-=1
-    }
+  
     this.finalForm.controls.steps.removeAt(index)
   }
 
