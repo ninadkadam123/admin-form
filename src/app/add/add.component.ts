@@ -155,9 +155,7 @@ export class AddComponent implements OnInit {
     return this.finalForm.get('steps') as FormArray
   }
   
-  addSteps() {
-    
-    
+  addSteps() {  
     this.finalForm.controls.steps.push(new FormGroup({ title: new FormControl(),stepNumber: new FormControl(), description: new FormControl() }))
   }
 
@@ -208,7 +206,6 @@ export class AddComponent implements OnInit {
     this.finalForm.controls.method.controls.category.controls._id.patchValue(value._id)
     this.finalForm.controls.method.controls.category.controls.title.patchValue(value.category)
     this.finalForm.controls.method.controls.category.controls.color.patchValue(value.color)
-    
     this.Category.name = value.category
     this.Category.color = value.color
     this.showcategory = false

@@ -129,7 +129,7 @@ export class EditComponent implements OnInit {
 
   onSubmit() {
    this.stepnumber=0
-   console.log(this.finalForm.value)
+   console.log(JSON.stringify(this.finalForm.value))
   this.service.updateMethod( this.finalForm.value,this.id).subscribe(()=>{
     (<HTMLInputElement>document.getElementById('bsta')).textContent="Method Modified";
     this.statusUpdateEvent.emit('list')
