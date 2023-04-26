@@ -6,43 +6,45 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MethodService {
-   
+  //URL="https://design-it-well.onrender.com"
+   //URL="http://15.207.201.163:1337"
+   URL="https://15.207.201.163"
   results=[]
   constructor(private httpClient:HttpClient) { }
 
   getDesignTag():Observable<any>{
-    return this.httpClient.get<Object>(`https://design-it-well.onrender.com/get-design-tags`)
+    return this.httpClient.get<Object>(`${this.URL}/get-design-tags`)
    }
   
     getMethodCategory():Observable<any>{
-    return this.httpClient.get<any>(`https://design-it-well.onrender.com/method-category`)
+    return this.httpClient.get<any>(`${this.URL}/method-category`)
    }
 
    addMethod(data:any):any{
     https://design-it-well.onrender.com
     console.log('in Post method')
     // console.log(JSON.parse(data))
-    return this.httpClient.post(`https://design-it-well.onrender.com/admin`,data)
+    return this.httpClient.post(`${this.URL}/admin`,data)
     
    }
    
    updateMethod(data:any,id:number){
     
-    return this.httpClient.put(`https://design-it-well.onrender.com/methods/${id}`,data)
+    return this.httpClient.put(`${this.URL}/methods/${id}`,data)
    }
    
    deleteMethod(id:number):Observable<any>{
     
-    return this.httpClient.delete<any>(`https://design-it-well.onrender.com/method/${id}`)
+    return this.httpClient.delete<any>(`${this.URL}/method/${id}`)
    }
 
    getList():Observable<any>{
-    return this.httpClient.get<any>(`https://design-it-well.onrender.com/methods`)
+    return this.httpClient.get<any>(`${this.URL}/methods`)
     
    }
 
    getMethod(id:number):Observable<any>{
-    return this.httpClient.get<any>(`https://design-it-well.onrender.com/admin/method/${id}`)
+    return this.httpClient.get<any>(`${this.URL}/admin/method/${id}`)
    }
 
   
